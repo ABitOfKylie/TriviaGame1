@@ -5,10 +5,10 @@ header{
 body{
 	font-family: sans-serif;
 	background-image: url("assets/images/questionBack.jpg");
-    background-color: #cccccc;
+	background: radial-gradient(whitesmoke, gray);	opacity:0.9;
 }
 #background{
-	background-image: url("../images/questionBack.jpg");
+	background-image: url("assets/images/questionBack.jpg");
 }
 #headerTitle{
 	font-size:60px;
@@ -39,6 +39,34 @@ body{
 	height:250px;
 	opacity:0.6;
 }
+
+#Start{
+  	width: 30%;
+  	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+
+}
+#question{
+	font-size:30px;
+	font-weight:700;
+	font-family:sans-serif;
+	text-align:center;
+	margin-left:60px;
+	padding:15px;
+	background:#b7b5b9;
+}
+#textInput{
+	font-size:;
+	padding:100px;
+	background: whitesmoke;
+	border:2px black solid;
+	width:60%;
+	line-height: 150%;
+	height:300px; 
+	margin-left:50px;
+}
+
 button{
 	width:400px;
 	height:100px;
@@ -54,12 +82,14 @@ button{
 #hr{
 	width:200px;
 	height:200px;
+	text-align: center;
+	padding: 30px;
 }
 figure{
 	float:right;
 	background: #beb7bf;
 }
-figcaption{
+#timeRem{
 	color:black;
 	font-size:28px;
 	font-weight:700;
