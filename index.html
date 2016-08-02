@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Trivia Game</title>
 	<script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
 	<link type="text/css" rel="stylesheet" href="assets/css/reset.css"/>
 	<link type="text/css" rel="stylesheet" href="assets/css/style.css"/>
 	<script src="assets/javascript/app.js"></script>
@@ -19,30 +21,43 @@
 		<img src = "assets/images/qMarkSuit.jpg" alt="Question Marks" value="0">
 	</div>
 	</header>
-		<container>
+		<div class = "container">
 		<!--note to self: only need one button, then html Start || Done || Timer, if so remove .hide and .show repl. with new title instead-->
 			<button id="Start" class="grad" class="showTimer">Start</button>
 			<div>
 				<figure><img id="hr"  src="assets/images/hrGlass.gif" alt="Hourglass" value="0">
 					<figcaption id="timeRem">Time Remaining: <br><span  id="Timer" class=showTimer >XX seconds</span>
 					</figcaption>
-				</figure>
+				</figure>	
 			</div>
-			<h2 id="question">"Here is the question"></h2>
+			<h2 id="testStatus">"Question 1 of"></h2>
 
 			
-
-			<section >
-				<h3>Question</h3>
-					<div id ="textInput">Maybe I put a form/input here or maybe just a text box with formatting </div>
-					
-			</section>
+		<section id ="textInput">
+			<!--<h2 id="question"> Following are the list of questions </h2>-->
+			
+		</section>
 			<!--<button id="Done" class="grad">Done</button>-->
-		</container>
+		</div>
  	<footer></footer>
 <script type="text/javascript"></script>
 <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <!--<script src="js/bootstrap.min.js"></script>-->
 
  	</body>
 
  </html>
+
+ <!-- alternative question/answer form input 
+ <form role = "form" >
+				<h2 id="question"> Following are the list of questions </h2>
+				<ul>
+					<li><input type = "radio" name = "choices" onclick."check(this.value)" value = "A"> "+chA+" <br></li>
+					<li><input type = "radio" name = "choices" onclick."check(this.value)" value = "B"> "+chB+" <br></li>
+					<li><input type = "radio" name = "choices" onclick."check(this.value)" value = "C"> "+chC+" <br></li>
+					<li><input type = "radio" name = "choices" onclick."check(this.value)" value = "D"> "+chD+" <br></li>
+
+				</ul>
+
+			</form>-->
