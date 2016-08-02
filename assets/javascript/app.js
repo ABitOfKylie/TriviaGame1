@@ -3,9 +3,9 @@ var correct = 0;
 var incorrect = 0;
 var noAnswer = 0;
 var score = 0;
-var test, test_status, question, choice, choices, chA, chB, chC,chD 
-
-
+var test, test_status, question, choice, choices, chA, chB, chC,chD; 
+var seconds, temp;
+var number = 120;
 
 var questions = [
 	["According to the 'Huffington Post', what can I guy do without?", "Black Umbrella", "Desert Boots","Bermuda shorts", "Converse sneakers","C"],
@@ -17,11 +17,14 @@ var questions = [
 $(document).ready(function(){
     	console.log( "ready!" );
 
-// remember to use $("#Start").show() on reset;
 	$("#Start").click(function() {
 	alert("Ready,Set,Go!");
 	$("#Start").hide("slow");
-	timerBegin();
+	timerBegin(); // warning time running out
+	run(); // countdown timer
+	//$("#Start").show("slow"); idea is idStart hides & .showTimer takes its space
+	$(".showTimer").html('number');
+
 
 	});
 
@@ -29,28 +32,54 @@ $(document).ready(function(){
 		correct = 0;
 		incorrect = 0;
 		noAnswer = 0;
-		$("#Start").show();
+		number = 120;
+		$("#Start").show();// if using same button for :timer & done, ???
+		$("#Start").html("Start");
 	}
 // timer section 
-function timerBegin () {
-setTimeout(twentySeconds,1000*20);
+function timerBegin () { // combine timerBegin tenleftSeconds in run function -& kill totalSeconds 
+setTimeout(tenleftSeconds,1000*110);//Hw easy full time 120sec.
 
-setTimeout(thirtySeconds,1000*30);
+setTimeout(totalSeconds,1000*120);//Hw easy full time 120sec.
 }
-function twentySeconds(){
+function tenleftSeconds(){
 	$("timeRem").html("10 Seconds Left!");
-	$("#timer").html(10);
+	$(".showTimer").html("10 " +"seconds");//
 	alert("10 seconds left");
 }
 
-function thirtySeconds() {
+function totalSeconds() {
 	audio.play();
-	$("#timeRem").html("Time/'s Up!")
+	
 	alert("Time is Up");
 	console.log('done');
 }
 
-	//Question section
+	//time remaining
+	function run(){
+            counter = setInterval(decrement, 1000);
+        }
+
+        function decrement(){
+            number--;
+            $('.showTimer').html('<h2>' + number + '</h2>');
+            if (number === 0){
+                stop();
+                $("#timeRem").html("Time/'s Up!")
+                alert('Your time is up!')
+            }
+        }
+
+        function stop(){
+            clearInterval(counter);
+            reset();
+        }
+
+        //run(); - this will happen on #Start.on (click, run check syntax)
+
+
+});
+	/*Question section
 	function (x){
 		return document.getElementById('x');
 	}
@@ -70,7 +99,7 @@ function thirtySeconds() {
 		/* need help here - 
 		value"A">"+chA"<br>...
 		value"B">
-		value"C">*/
+		value"C">
 	function checkAnswer() {
 		choices = document.getElementByName('choices');
 		for(var i=0; i<choices.length; i++){
@@ -96,8 +125,6 @@ function thirtySeconds() {
 			$("#question").html("<h1> Test Completed </h1>")
 			$("textInput").html("<h3> "correct Answers: "+ (correct)</h3><br>" );
 			$("textInput").html("<h3> "Incorrect Answers: "+ (incorrect)</h3><br>" );
-			$("textInput").html("<h3> "Unanswered: "+ (noAnswer)</h3><br>" );
+			$("textInput").html("<h3> "Unanswered: "+ (noAnswer)</h3><br>" );*/
 
-		}
-	}
 

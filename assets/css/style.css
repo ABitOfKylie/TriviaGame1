@@ -55,12 +55,13 @@ body{
 	margin-left:60px;
 	padding:15px;
 	background:#b7b5b9;
+	border:#636669;
 }
 #textInput{
 	font-size:;
 	padding:100px;
 	background: whitesmoke;
-	border:2px black solid;
+	border:2px #636669 solid;
 	width:60%;
 	line-height: 150%;
 	height:300px; 
