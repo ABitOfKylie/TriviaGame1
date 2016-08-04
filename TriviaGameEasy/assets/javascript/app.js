@@ -36,15 +36,7 @@ function submitAnswers(){
 	return false;
 }
 
-
-
-
-
-
-
-
-
-
+// once the above code is working, add in js/jq timer functions. then test renderQuestion/checkAnswer functions.
 /*$(document).ready(function(){
     	console.log( "ready!" );
 
