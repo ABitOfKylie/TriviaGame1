@@ -21,7 +21,7 @@
 		<img src = "assets/images/qMarkSuit.jpg" alt="Question Marks" value="0">
 	</div>
 	</header>
-		<div class = "container">
+		
 		<!--note to self: only need one button, then html Start || Done || Timer, if so remove .hide and .show repl. with new title instead-->
 			<button id="Start" class="grad" class="showTimer">Start</button>
 			<div>
@@ -32,13 +32,73 @@
 			</div>
 			<h2 id="testStatus">"Question 1 of"></h2>
 
-			
-		<section id ="textInput">
-			<!--<h2 id="question"> Following are the list of questions </h2>-->
-			
-		</section>
-			<!--<button id="Done" class="grad">Done</button>-->
-		</div>
+	<div class = "mainContent">		
+	
+		<form name = "quizForm" onsubmit='return submitAnswers()'>
+			<h3> 1. According to the 'Huffington Post', what can a guy do without?</h3>
+			<input type = "radio" name = "q1" value ="a" id = "q1a">a. Black Umbrella 
+			<input type = "radio" name = "q1" value ="b" id = "q1b">b. Desert Boots 
+			<input type = "radio" name = "q1" value ="c" id = "q1c">c. Bermuda Shorts 
+			<input type = "radio" name = "q1" value ="d" id = "q1d">c. Converse Sneakers 
+
+			<h3> 2. According to the 'Huffington Post', what can a guy do without?</h3>
+			<input type = "radio" name = "q2" value ="a" id = "q2a">a. Navy Suit 
+			<input type = "radio" name = "q2" value ="b" id = "q2b">b. Gray Sports Coat 
+			<input type = "radio" name = "q2" value ="c" id = "q2c">c. Dark Wool Jacket 
+			<input type = "radio" name = "q2" value ="d" id = "q2d">d. Trench Coat 
+
+			<h3> 3. According to the 'GQ', what can a guy do without?</h3>
+			<input type = "radio" name = "q3" value ="a" id = "q3a">a. Black Dress Pants 
+			<input type = "radio" name = "q3" value ="b" id = "q3b">b. Oxford Shirt 
+			<input type = "radio" name = "q3" value ="c" id = "q3c">c. Bomber Jacket 
+			<input type = "radio" name = "q3" value ="d" id = "q3d">d. White Sneakers 
+
+			<h3> 4. According to 'GQ', what can a guy do without?</h3>
+			<input type = "radio" name = "q4" value ="a" id = "q4a">a. Black Dress Pants 
+			<input type = "radio" name = "q4" value ="b" id = "q4b">b. Oxford Shirt 
+			<input type = "radio" name = "q4" value ="c" id = "q4c">c. Bomber Jacket 
+			<input type = "radio" name = "q4" value ="d" id = "q4d">d. White Sneakers 
+
+			<h3> 5. Which of the following is not  lager?</h3>
+			<input type = "radio" name = "q5" value ="a" id = "q5a">a. Pilsner 
+			<input type = "radio" name = "q5" value ="b" id = "q5b">b. Bock 
+			<input type = "radio" name = "q5" value ="c" id = "q5c">c. Stout 
+			<input type = "radio" name = "q5" value ="d" id = "q5d">d. Marzen 
+
+			<h3> 6. What year did Corvette introduce the Sting Ray?</h3>
+			<input type = "radio" name = "q6" value ="a" id = "q6a">a. 1969 
+			<input type = "radio" name = "q6" value ="b" id = "q6b">b. 1961 
+			<input type = "radio" name = "q6" value ="c" id = "q6c">c. 1965 
+			<input type = "radio" name = "q6" value ="d" id = "q6d">d. 1963 
+
+			<h3> 7. The 1969 Indianapolis pace car was a:</h3>
+			<input type = "radio" name = "q7" value ="a" id = "q7a">a. Mustang 
+			<input type = "radio" name = "q7" value ="b" id = "q7b">b. Camaro 
+			<input type = "radio" name = "q7" value ="c" id = "q7c">c. Barracuda 
+			<input type = "radio" name = "q7" value ="d" id = "q7d">d. Corvette 
+
+			<h3> 8. In golf, which of these clubs has the least loft:</h3>
+			<input type = "radio" name = "q8" value ="a" id = "q8a">a. Pitching wedge 
+			<input type = "radio" name = "q8" value ="b" id = "q8b">b. Sand wedge 
+			<input type = "radio" name = "q8" value ="c" id = "q8c">c. Lob wedge 
+			<input type = "radio" name = "q8" value ="d" id = "q8d">d. Gap wedge 
+
+			<h3> 9. A Gordy Howe Hat Trick does not include the following:</h3>
+			<input type = "radio" name = "q9" value ="a" id = "q9a">a. Assist 
+			<input type = "radio" name = "q9" value ="b" id = "q9b">b. Fight 
+			<input type = "radio" name = "q9" value ="c" id = "q9c">c. Misconduct Penalty 
+			<input type = "radio" name = "q9" value ="d" id = "q9d">d. Goal 
+
+			<h3> 10. Which Bond title sequence song was NOT sung by Shirley Bassey?"</h3>
+			<input type = "radio" name = "q10" value ="a" id = "q10a">a. You Only Live Twice 
+			<input type = "radio" name = "q10" value ="b" id = "q10b">b. Goldfinger 
+			<input type = "radio" name = "q10" value ="c" id = "q10c">c. Moonraker 
+			<input type = "radio" name = "q10" value ="d" id = "q10d">d. Diamonds Are Forever? 
+			<input type = "submit" value="submitAnswers">
+
+		</form>
+	
+	</div>
  	<footer></footer>
 <script type="text/javascript"></script>
 <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
@@ -46,7 +106,17 @@
  	</body>
 
  </html>
-
+<!--["According to the 'Huffington Post', what can a guy do without?", "Black Umbrella", "Desert Boots","Bermuda shorts", "Converse sneakers","assets/images/redQMark.jpg","C"],
+	["According to the 'Huffington Post', what can a guy do without?","Navy Suit", "Gray Sport Coat","Dark Wool Jacket","Trench Coat","D"],
+	["According to GQ, what can a guy do without?","Black Dress Pants","Oxford Shirt","Bomber Jacket","White Sneakers","A"],
+	["Which of the following is NOT a lager?", "Pilsner", "Bock", "Stout", "Marzen","C"],
+	["What was the first year Corvette introduced the Sting Ray?", "1969", "1961","1965","1963","D"],
+	["The 1969 Indianapolis pace car was a:","Mustang", "Camaro", "Corvette", "Barracuda","B"],
+	["A Gordy Howe Hat Trick does not include the following:", "Assist", "Fight", "Misconduct Penalty", "Goal","C"],
+	["In golf, which of these clubs has the least loft:", "pitching wedge", "sand wedge", "lob wedge","gap wedge", "A"],
+	["Who was the oldest Marx brother?", "Harpo", "Chico", "Zeppo", "Groucho", "B"],
+	["Which Bond title sequence song was NOT sung by Shirley Bassey?", "You Only Live Twice", "Goldfinger", "Diamonds Are Forever", "Moonraker", "A"]
+	];-->
  <!-- alternative question/answer form input 
  <form role = "form" >
 				<h2 id="question"> Following are the list of questions </h2>

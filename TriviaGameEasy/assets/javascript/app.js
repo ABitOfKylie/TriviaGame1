@@ -1,28 +1,57 @@
-var audio = new Audio('https://p.scdn.co/mp3-preview/ed5a443bc86176135ebca8a114f66f4d814d4c90');
-var correct = 0;
-var incorrect = 0;
-var noAnswer = totalQuestions-correct-incorrect;
-var score = 0;
-var pos = 0;
-var test, test_status, question, choice, chA, chB, chC,chD; 
-var seconds, temp;
-var number = 120;
-var choices = [];
-var totalQuestions = 5;
-var questions = [
-	["According to the 'Huffington Post', what can a guy do without?", "Black Umbrella", "Desert Boots","Bermuda shorts", "Converse sneakers","assets/images/redQMark.jpg","C"],
-	["According to the 'Huffington Post', what can a guy do without?","Navy Suit", "Gray Sport Coat","Dark Wool Jacket","Trench Coat","D"],
-	["According to GQ, what can a guy do without?","Black Dress Pants","Oxford Shirt","Bomber Jacket","White Sneakers","A"],
-	["Which of the following is NOT a lager?", "Pilsner", "Bock", "Stout", "Marzen","C"],
-	["What was the first year Corvette introduced the Sting Ray?", "1969", "1961","1965","1963","D"],
-	["The 1969 Indianapolis pace car was a:","Mustang", "Camaro", "Corvette", "Barracuda","B"],
-	["A Gordy Howe Hat Trick does not include the following:", "Assist", "Fight", "Misconduct Penalty", "Goal","C"],
-	["In golf, which of these clubs has the least loft:", "pitching wedge", "sand wedge", "lob wedge","gap wedge", "A"],
-	["Who was the oldest Marx brother?", "Harpo", "Chico", "Zeppo", "Groucho", "B"],
-	["Which Bond title sequence song was NOT sung by Shirley Bassey?", "You Only Live Twice", "Goldfinger", "Diamonds Are Forever", "Moonraker", "A"]
-	];
 
-$(document).ready(function(){
+function submitAnswers(){
+var total = 10;
+var score = 0; 
+var incorrect = total - score;
+
+   // yes use jq $("").val
+var q1 = document.forms["quizForm"] ["q1"].value;
+var q2 = document.forms["quizForm"] ["q2"].value;
+var q3 = document.forms["quizForm"] ["q3"].value;
+var q4 = document.forms["quizForm"] ["q4"].value;
+var q5 = document.forms["quizForm"] ["q5"].value;
+var q6 = document.forms["quizForm"] ["q6"].value;
+var q7 = document.forms["quizForm"] ["q7"].value;
+var q8 = document.forms["quizForm"] ["q8"].value;
+var q9 = document.forms["quizForm"] ["q9"].value;
+var q10 = document.forms["quizForm"] ["q10"].value;
+
+		//ensure user answer  recheck - not working
+
+	for(var i = 1; i<total; i++){
+		if (eval ('q' +i) === null || eval ('q' +i) === " ") {
+			alert ("You missed question " + i);
+			return false;
+		}
+	}
+
+// Correct Answers
+ var answers = [c, d, a, c, d, b, c, a, b, a];
+
+ // Check Answers
+ 	for(var i = 1; i<=total; i++){
+ 		if (eval ('q' +i) === answers[i - 1] ){
+ 			score++;
+ 		}
+	}
+
+// Final results
+	var testStatus = document.getElementById('testStatus');
+	testStatus.innerHTML = "You scored <span> "+score+"</span> out of <span> "+total+"</span>"
+	alert("You scored " + score + "/ " +total);
+	return false;
+
+}
+
+
+
+
+
+
+
+
+
+/*$(document).ready(function(){
     	console.log( "ready!" );
 
 	$("#Start").click(function() {
@@ -59,7 +88,7 @@ $(document).ready(function(){
             /*setTimeout(totalSeconds,1000*120); // added 66-68. may have to delete
             function totalSeconds(){
             	audio.play();
-            }*/
+            }
             
         }
 
@@ -132,7 +161,7 @@ $(document).ready(function(){
 			
 			/*renderQuestion();
 			$(".submit").click(renderQuestion);
-			setTimeout(renderQuestion,10000);*/
+			setTimeout(renderQuestion,10000);
    
 	}
 
@@ -147,8 +176,8 @@ $(document).ready(function(){
 			$("textInput").append("<h3> "Unanswered: "+ (noAnswer)</h3><br>" );
 			audio.play();
 			setTimeout(reset, 5000);
-		}*/
-	}); //end of document.ready
+		}
+	}); //end of document.ready*/
 
 	/*Question section
 	

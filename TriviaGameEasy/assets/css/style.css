@@ -58,17 +58,18 @@ body{
 	background:#b7b5b9;
 	border:#636669;
 }
-#textInput{
-	font-size:30px;
-	padding:100px;
+.mainContent{
+	font-size:25px;
+	padding:56px;
 	background: whitesmoke;
 	border:18px #636669 solid;
-	width:59%;
+	width:64%;
 	line-height: 150%;
-	height:300px; 
+	height:auto; 
 	margin-left:60px;
 
 }
+
 
 .submit{
 	background: silver;
