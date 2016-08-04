@@ -19,7 +19,7 @@ var q10 = document.forms["quizForm"] ["q10"].value;
 		//ensure user answer  recheck - not working
 
 	for(var i = 1; i<total; i++){
-		if (eval ('q' +i) === null || eval ('q' +i) === " ") {
+		if (eval ('q' + i) === null || eval ('q' +i) === " ") {
 			alert ("You missed question " + i);
 			return false;
 		}
