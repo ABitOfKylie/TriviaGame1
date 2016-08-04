@@ -58,7 +58,7 @@ body{
 	background:#b7b5b9;
 	border:#636669;
 }
-.mainContent{
+#mainContent{
 	font-size:25px;
 	padding:56px;
 	background: whitesmoke;

@@ -1,47 +1,41 @@
-
 function submitAnswers(){
-var total = 10;
-var score = 0; 
-var incorrect = total - score;
+	var total = 10;
+	var score = 0; 
+	var incorrect = total - score;
+	var q1 = document.forms["quizForm"] ["q1"].value;
+	var q2 = document.forms["quizForm"] ["q2"].value;
+	var q3 = document.forms["quizForm"] ["q3"].value;
+	var q4 = document.forms["quizForm"] ["q4"].value;
+	var q5 = document.forms["quizForm"] ["q5"].value;
+	var q6 = document.forms["quizForm"] ["q6"].value;
+	var q7 = document.forms["quizForm"] ["q7"].value;
+	var q8 = document.forms["quizForm"] ["q8"].value;
+	var q9 = document.forms["quizForm"] ["q9"].value;
+	var q10 = document.forms["quizForm"] ["q10"].value;
+	console.log(q1);
 
-   // yes use jq $("").val
-var q1 = document.forms["quizForm"] ["q1"].value;
-var q2 = document.forms["quizForm"] ["q2"].value;
-var q3 = document.forms["quizForm"] ["q3"].value;
-var q4 = document.forms["quizForm"] ["q4"].value;
-var q5 = document.forms["quizForm"] ["q5"].value;
-var q6 = document.forms["quizForm"] ["q6"].value;
-var q7 = document.forms["quizForm"] ["q7"].value;
-var q8 = document.forms["quizForm"] ["q8"].value;
-var q9 = document.forms["quizForm"] ["q9"].value;
-var q10 = document.forms["quizForm"] ["q10"].value;
-
-		//ensure user answer  recheck - not working
-
-	for(var i = 1; i<total; i++){
-		if (eval ('q' + i) === null || eval ('q' +i) === " ") {
+	alert("q1");	
+	//ensure user answer .. eval evaluates a string
+	for(var i = 1; i<=total; i++){
+		if (eval ('q' + i ) == null || eval ('q' +i) == " ") {
 			alert ("You missed question " + i);
 			return false;
 		}
 	}
-
 // Correct Answers
- var answers = [c, d, a, c, d, b, c, a, b, a];
-
+ 	var answers = [c, d, a, c, d, b, c, a, b, a];
  // Check Answers
  	for(var i = 1; i<=total; i++){
  		if (eval ('q' +i) === answers[i - 1] ){
  			score++;
  		}
-	}
-
-// Final results
+	} // Final Answers
 	var testStatus = document.getElementById('testStatus');
 	testStatus.innerHTML = "You scored <span> "+score+"</span> out of <span> "+total+"</span>"
 	alert("You scored " + score + "/ " +total);
 	return false;
-
 }
+
 
 
 
