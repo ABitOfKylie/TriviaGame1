@@ -1,18 +1,18 @@
-var audio = new Audio('"https://p.scdn.co/mp3-preview/ed5a443bc86176135ebca8a114f66f4d814d4c90"');
+var audio = new Audio('https://p.scdn.co/mp3-preview/ed5a443bc86176135ebca8a114f66f4d814d4c90');
 var correct = 0;
 var incorrect = 0;
-var noAnswer = 0;
+var noAnswer = totalQuestions-correct-incorrect;
 var score = 0;
-var pos = 0
+var pos = 0;
 var test, test_status, question, choice, chA, chB, chC,chD; 
 var seconds, temp;
 var number = 120;
 var choices = [];
-
+var totalQuestions = 5;
 var questions = [
-	["According to the 'Huffington Post', what can I guy do without?", "Black Umbrella", "Desert Boots","Bermuda shorts", "Converse sneakers","C"],
-	["According to the 'Huffington Post', what can I guy do without?","Navy Suit", "Gray Sport Coat","Dark Wool Jacket","Trench Coat","D"],
-	["According to GQ, what can I guy do without?","Black Dress Pants","Oxford Shirt","Bomber Jacket","White Sneakers","A"],
+	["According to the 'Huffington Post', what can a guy do without?", "Black Umbrella", "Desert Boots","Bermuda shorts", "Converse sneakers","assets/images/redQMark.jpg","C"],
+	["According to the 'Huffington Post', what can a guy do without?","Navy Suit", "Gray Sport Coat","Dark Wool Jacket","Trench Coat","D"],
+	["According to GQ, what can a guy do without?","Black Dress Pants","Oxford Shirt","Bomber Jacket","White Sneakers","A"],
 	["According to 'The Elite Daily', of the traits that women want in a man, what is not included?", "Sense of Humor", "Brains", "Sex Appeal", "Good Listener","C"],
 	["What was the first year Corvette introduced the Sting Ray?", "1969", "1961","1965","1963","D"]
 	];
@@ -23,7 +23,7 @@ $(document).ready(function(){
 	$("#Start").click(function() {
 	alert("Ready,Set,Go!");
 	$("#Start").hide("slow");
-	timerBegin(); // warning time running out
+	
 	run(); // countdown timer
 	//$("#Start").show("slow"); idea is idStart hides & .showTimer takes its space
 	$(".showTimer").html('number');
@@ -40,38 +40,49 @@ $(document).ready(function(){
 		number = 120;
 		$("#Start").show();// if using same button for :timer & done, ???
 		$("#Start").html("Start");
+		$("#textInput").hide();
 	}
-// timer section 
-function timerBegin () { // combine timerBegin tenleftSeconds in run function -& kill totalSeconds 
-setTimeout(tenleftSeconds,1000*110);//Hw easy full time 120sec.
+//timer section 
+//function timerBegin () { // combine timerBegin tenleftSeconds in run function -& kill totalSeconds 
+// setTimeout(tenleftSeconds,1000*110);//Hw easy full time 120sec.
 
-setTimeout(totalSeconds,1000*120);//Hw easy full time 120sec.
-}
-function tenleftSeconds(){
-	$("timeRem").html("10 Seconds Left!");
-	$(".showTimer").html("10 " +"seconds");//
+// setTimeout(totalSeconds,1000*120);//Hw easy full time 120sec.
+/*}
+ function tenleftSeconds(){
+ 	$("timeRem").html("10 Seconds Left!");
+ 	$(".showTimer").html("10 " +"seconds");//
 	alert("10 seconds left");
-}
+ }*/
 
-function totalSeconds() {
-	//audio.play();
+	function totalSeconds() {
+		audio.play();
 	
-	alert("Time is Up");
-	console.log('done');
-}
+// 	alert("Time is Up");
+// 	console.log('done');
+	}
 
 	//time remaining
 	function run(){  //run(); - this will happen on #Start.on (click, run check syntax)
             counter = setInterval(decrement, 1000);
+            setTimeout(totalSeconds,1000*120);
+            /*setTimeout(totalSeconds,1000*120); // added 66-68. may have to delete
+            function totalSeconds(){
+            	audio.play();
+            }*/
+            
         }
 
         function decrement(){
             number--;
             $('.showTimer').html('<h2>' + number + '</h2>');
+            $("#Start").show(300);// if using same button for :timer & done, ???
+			$("#Start").html('<h2>' + number + '</h2>');
             if (number === 0){
                 stop();
-                $("#timeRem").html("Time/'s Up!")
-                alert('Your time is up!')
+                $("#timeRem").html("Time's Up!");
+                alert('Your time is up!');
+            } else if (number == 10) {
+
             }
         }
 
@@ -83,26 +94,31 @@ function totalSeconds() {
         //Populating question form
     //function
    	function renderQuestion() {
-   		if(pos >= questions.length){
-   			$("#testStatus").html = "<h2> You got '+correct+' of '+questions.length+'  questions correct </h2>";
-   			$("#testStatus").html = "Test Completed";
-   			reset();
+   		if(pos >= questions.length){  // resultPage()
+   			$("#testStatus").html ("<h2> You got '+correct+' of '+questions.length+'  questions correct </h2>");
+   			$("#testStatus").html ( "Test Completed");
+   			reset(); // not reset, resultPage then timeOut then reset
    			return false;
    		}
+   	
 		//test = ('test'); //populate questions 1 thru 5
-		$("#testStatus").html = ("Question" + (pos+1) +"  of  " + questions.length);
+		$("#testStatus").text ("Question + (pos +1) ' /  '+ questions.length");
 		question = questions [pos] [0]; // actual question
 		chA = questions [pos] [1];			// choice one etc.
 		chB = questions [pos] [2]; 
 		chC = questions [pos] [3];
 		chD = questions [pos] [4];
-		$("#textInput").html = "<h2>'+question +'<h2>";
-		$("#textInput").html += "<input type ='radio' name = 'choices'  value = 'A'> '+chA+' <br>";
-		$("#textInput").html += "<input type = 'radio' name = 'choices' value = 'B'> '+chB+' <br>";
-		$("#textInput").html += "<input type = 'radio' name = 'choices' value = 'C'> '+chC+' <br>";
-		$("#textInput").html += "<input type = 'radio' name = 'choices' value = 'D'> '+chD+' <br><br>";
-		$("#textInput").html += "<button onclick="checkAnswer()">Submit Answer</button>";
-		}
+		pic = questions [pos] [5];
+		$("#textInput").show(300);
+		$("#textInput").html("<h2>"+question +"<h2>");
+		$("#textInput").append("<input type ='radio' name = 'choices'  value = 'A'>" +chA+ "<br>");
+		$("#textInput").append ("<input type = 'radio' name = 'choices' value = 'B'>"+chB+ "<br>");
+		$("#textInput").append ("<input type = 'radio' name = 'choices' value = 'C'>" +chC+ "<br>");
+		$("#textInput").append ("<input type = 'radio' name = 'choices' value = 'D'>" +chD+ "<br><br>");
+		$("#textInput").append ("<button class='submit' onclick='checkAnswer()'>Submit</button>");
+		//$("#textInput").append (+pic+);
+	}	
+		
 		
 	function checkAnswer(){
 		choices = document.getElementByName('choices'); //creating array with 4 items
@@ -111,21 +127,37 @@ function totalSeconds() {
 				choice = choices[i].value;		
 			}
 		}
-		if (choice === questions [pos] [5]){
+		if (choice === questions [pos] [5] && pos>=6){
 			correct ++; // could add sound audio() or image flash
-			}
-		else if {
-			(choice !== questions [pos] [5])
-				incorrect ++
-			}
-		else {
-			unanswered ++
-			}
-		}
 			pos ++;
 			renderQuestion();
+			}
+		else if 
+			(choice !== questions [pos] [5]);{
+				incorrect ++
+				pos ++;
+				renderQuestion();
+			}
+			
+			/*renderQuestion();
+			$(".submit").click(renderQuestion);
+			setTimeout(renderQuestion,10000);*/
    
-}); //end of document.ready
+	}
+
+		/*function resultPage(){
+			$("#testStatus").html("<h2> Test Completed </h2>")
+			$("#Start").fadeOut("slow");// if using same button for :timer & done, ???
+			$("#Start").html('Ta Dah!');
+			$("#Start").fadeIn("slow");
+			$("#textInput").append("Correct: " + correct + <br>);
+			$("textInput").append("<h3> "correct Answers: "+ (correct)</h3><br>" );
+			$("textInput").append("<h3> "Incorrect Answers: "+ (incorrect)</h3><br>" );
+			$("textInput").append("<h3> "Unanswered: "+ (noAnswer)</h3><br>" );
+			audio.play();
+			setTimeout(reset, 5000);
+		}*/
+	}); //end of document.ready
 
 	/*Question section
 	
