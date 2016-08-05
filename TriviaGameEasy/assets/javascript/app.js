@@ -2,7 +2,8 @@
 	$(document).ready(function(){
     	console.log( "ready!" );
 
-	
+	var audio = new Audio('https://p.scdn.co/mp3-preview/ed5a443bc86176135ebca8a114f66f4d814d4c90');
+
 	var total = 10;
 	var score = 0; 
 	var incorrect = total - score;
