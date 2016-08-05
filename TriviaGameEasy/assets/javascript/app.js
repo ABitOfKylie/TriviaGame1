@@ -1,7 +1,79 @@
-function submitAnswers(){
+	
+	$(document).ready(function(){
+    	console.log( "ready!" );
+
+	
 	var total = 10;
 	var score = 0; 
 	var incorrect = total - score;
+	var noAnswer = totalQuestions-score - incorrect;
+	var pos = 0;
+	var test, test_status, question, choice, chA, chB, chC,chD; 
+	var seconds, temp;
+	var number = 120;
+	var choices = [];
+	var totalQuestions = 10;
+	var answers = ["c", "d", "a", "c", "d", "b", "c", "a", "b", "a"];
+
+$("#Start").click(function() {
+	alert("Ready,Set,Go!");
+	$("#Start").hide("slow");
+	
+	run(); // countdown timer
+	//$("#Start").show("slow"); idea is idStart hides & .showTimer takes its space
+	$(".showTimer").html('number');
+	submitAnswers();
+
+
+	});
+
+	function reset() {
+		correct = 0;
+		incorrect = 0;
+		noAnswer = 0;
+		pos = 0;
+		number = 120;
+		$("#Start").show();// if using same button for :timer & done, ???
+		$("#Start").html("Start");
+		$("#textInput").hide();
+	}
+
+	function totalSeconds() {
+		audio.play();
+	
+	}
+
+	//time remaining
+	function run(){  //run(); - this will happen on #Start.on (click, run check syntax)
+            counter = setInterval(decrement, 1000);
+            setTimeout(totalSeconds,1000*120);
+            /*setTimeout(totalSeconds,1000*120); // added 66-68. may have to delete
+            function totalSeconds(){
+            	audio.play();
+            }*/
+            
+        }
+
+        function decrement(){
+            number--;
+            $('.showTimer').html('<h2>' + number + '</h2>');
+            $("#Start").show(300);
+			$("#Start").html('<h2>' + number + '</h2>');
+            if (number === 0){
+                stop();
+                $("#timeRem").html("Time's Up!");
+                alert('Your time is up!');
+            } else if (number == 10) {
+
+            }
+        }
+
+        function stop(){
+            clearInterval(counter);
+            reset();
+        }
+        	// below submitAnswers to be activated by submit button line 97 in html err: undef
+	function submitAnswers(){
 	var q1 = document.forms["quizForm"] ["q1"].value;
 	var q2 = document.forms["quizForm"] ["q2"].value;
 	var q3 = document.forms["quizForm"] ["q3"].value;
@@ -12,29 +84,45 @@ function submitAnswers(){
 	var q8 = document.forms["quizForm"] ["q8"].value;
 	var q9 = document.forms["quizForm"] ["q9"].value;
 	var q10 = document.forms["quizForm"] ["q10"].value;
-	console.log(q1);
 
-	alert("q1");	
+	var qs = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10]
+		console.log(q1); // console.log does not work - clearly the problem syntax above or line 97
 	//ensure user answer .. eval evaluates a string
-	for(var i = 1; i<=total; i++){
-		if (eval ('q' + i ) == null || eval ('q' +i) == " ") {
-			alert ("You missed question " + i);
+	for(var i = 0; i<=total; i++){
+		if (eval (qs[i] ) == null || eval (qs[i]) == " ") {
+			alert ("You missed question " + [i]+1);
 			return false;
 		}
 	}
-// Correct Answers
- 	var answers = [c, d, a, c, d, b, c, a, b, a];
+
+ //Correct Answers
+
+ 
  // Check Answers
- 	for(var i = 1; i<=total; i++){
- 		if (eval ('q' +i) === answers[i - 1] ){
+ 	for(var i = 0; i<=total; i++){
+ 		if (eval (qs[i]) === answers[i] ){
  			score++;
  		}
 	} // Final Answers
+	function results(){
+	$("#quizForm").hide ();
+	$("#testStatus").html("<h2> Test Completed </h2>")
+			$("#mainContent").fadeOut("slow");// if using same button for :timer & done, ???
+			$("#mainContent").html('Ta Dah!');
+			$("#mainContent").fadeIn("slow");
+			$("#textInput").append("Correct: " + correct + "<br>");
+			$("#textInput").append("<h3> correct Answers: " + correct + "</h3><br>" );
+			$("#textInput").append("<h3> Incorrect Answers: " + incorrect + "</h3><br>" );
+			$("#textInput").append("<h3> Unanswered: " + noAnswer + "</h3><br>" );
+			audio.play();
+			setTimeout(reset, 5000);
+		
 	var testStatus = document.getElementById('testStatus');
-	testStatus.innerHTML = "You scored <span> "+score+"</span> out of <span> "+total+"</span>"
+	testStatus.innerHTML = "You scored <span> "+score+"</span> out of <span> "+total+"</span>";
 	alert("You scored " + score + "/ " +total);
 	return false;
 }
+}});
 
 // once the above code is working, add in js/jq timer functions. then test renderQuestion/checkAnswer functions.
 /*$(document).ready(function(){
