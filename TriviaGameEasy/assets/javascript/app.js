@@ -3,7 +3,7 @@
     	console.log( "ready!" );
 
 	var audio = new Audio('https://p.scdn.co/mp3-preview/ed5a443bc86176135ebca8a114f66f4d814d4c90');
-
+	var TaDa = src = "assets/TaDa.mp3"
 	var total = 10;
 	var score = 0; 
 	var incorrect = total - score;
@@ -23,7 +23,6 @@ $("#Start").click(function() {
 	run(); // countdown timer
 	//$("#Start").show("slow"); idea is idStart hides & .showTimer takes its space
 	$(".showTimer").html('number');
-	submitAnswers();
 
 
 	});
@@ -39,43 +38,44 @@ $("#Start").click(function() {
 		$("#textInput").hide();
 	}
 
-	function totalSeconds() {
-		audio.play();
-	
-	}
-
-	//time remaining
+	//Timer Section
 	function run(){  //run(); - this will happen on #Start.on (click, run check syntax)
             counter = setInterval(decrement, 1000);
-            setTimeout(totalSeconds,1000*120);
-            /*setTimeout(totalSeconds,1000*120); // added 66-68. may have to delete
-            function totalSeconds(){
-            	audio.play();
-            }*/
-            
+            setTimeout(number,1000*120);      
         }
 
         function decrement(){
-            number--;
-            $('.showTimer').html('<h2>' + number + '</h2>');
-            $("#Start").show(300);
-			$("#Start").html('<h2>' + number + '</h2>');
-            if (number === 0){
+        	number --;
+           /* if(number === 0){
                 stop();
                 $("#timeRem").html("Time's Up!");
                 alert('Your time is up!');
-            } else if (number == 10) {
+         }
+        }*/
+        	$('.showTimer').html('<h2>' + number + '</h2>');
+            $("#Start").show(300);// if using same button for :timer & done, ???
+			$("#Start").html('<h2>' + number + '</h2>');
 
+            if(number === 10){
+            	$("timeRem").html("10 Seconds Left!");
+ 				$(".showTimer").html("10 " +"seconds");//
+				alert("10 seconds left");
+				audio.play();
             }
-        }
+            else if(number === 0){
+                stop();
+                $("#timeRem").html("Time's Up!");
+                alert('Your time is up!');
+            }
+       }
 
         function stop(){
             clearInterval(counter);
             reset();
         }
         	// below submitAnswers to be activated by submit button line 97 in html err: undef
-	function submitAnswers(){
-	var q1 = document.forms["quizForm"] ["q1"].value;
+	function validateAnswers (){
+	/*var q1 = document.forms["quizForm"] ["q1"].value;
 	var q2 = document.forms["quizForm"] ["q2"].value;
 	var q3 = document.forms["quizForm"] ["q3"].value;
 	var q4 = document.forms["quizForm"] ["q4"].value;
@@ -86,12 +86,24 @@ $("#Start").click(function() {
 	var q9 = document.forms["quizForm"] ["q9"].value;
 	var q10 = document.forms["quizForm"] ["q10"].value;
 
-	var qs = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10]
-		console.log(q1); // console.log does not work - clearly the problem syntax above or line 97
+	var qs = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10]*/
+	var qs = [];
+	for (var i = 1;i<=total;i++) {
+		qs.push(document.forms["quizForm"] ["q"+i].value);
+	}
+	console.log("TEST: "+q1); // console.log does not work - clearly the problem syntax above or line 97
 	//ensure user answer .. eval evaluates a string
-	for(var i = 0; i<=total; i++){
-		if (eval (qs[i] ) == null || eval (qs[i]) == " ") {
-			alert ("You missed question " + [i]+1);
+	var nullFound = 0;
+	for(var i = 0; i<total; i++){
+		if (nullFound==0 && (eval (qs[i] ) == null || eval (qs[i]) == " ")) {
+			if (i==total-1) {
+				alert ("You missed question 10");
+				return false;
+			}
+			nullFound=i+1;
+		}
+		else if (nullFound>0 && !(eval (qs[i] ) == null || eval (qs[i]) == " ")) {
+			alert ("You missed question " + nullFound);
 			return false;
 		}
 	}
@@ -100,6 +112,12 @@ $("#Start").click(function() {
 
  
  // Check Answers
+ 	var qs = [];
+	for (var i = 1;i<=total;i++) {
+		qs.push(document.forms["quizForm"] ["q"+i].value);
+		if(qs[i]==questions[i].answer){
+
+	}
  	for(var i = 0; i<=total; i++){
  		if (eval (qs[i]) === answers[i] ){
  			score++;
@@ -125,21 +143,19 @@ $("#Start").click(function() {
 }
 }});
 
-// once the above code is working, add in js/jq timer functions. then test renderQuestion/checkAnswer functions.
-/*$(document).ready(function(){
-    	console.log( "ready!" );
+// Dear You, 
+	/* When you return to fix this - you need to fix the validateAnswers function so that, it does
+	not start until the 2nd+ question is answered and that it runs 1 more time after the total number of questions.
+	total +1.  Right now no response
+	Now - look at the checkAnswers function and figure out a way to radiobutton onclick function{
+	$(this) pick out the value and compare to $(questions/array name question#[] [i pos of answer])
+	ONce you figure out this then you can go back to the if user choice == obj.answer then
+		correct ++', score ++, hide old items, append new "Correct Answer & obj.image etc or
+		else if !== .... tasks' both should in the future - render the next question.
+	Bonus if you get the above right then
 
-	$("#Start").click(function() {
-	alert("Ready,Set,Go!");
-	$("#Start").hide("slow");
-	
-	run(); // countdown timer
-	//$("#Start").show("slow"); idea is idStart hides & .showTimer takes its space
-	$(".showTimer").html('number');
-	renderQuestion();
+	}
 
-
-	});
 
 	function reset() {
 		correct = 0;

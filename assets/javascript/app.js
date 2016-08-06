@@ -42,34 +42,11 @@ $(document).ready(function(){
 		$("#Start").html("Start");
 		$("#textInput").hide();
 	}
-//timer section 
-//function timerBegin () { // combine timerBegin tenleftSeconds in run function -& kill totalSeconds 
-// setTimeout(tenleftSeconds,1000*110);//Hw easy full time 120sec.
 
-// setTimeout(totalSeconds,1000*120);//Hw easy full time 120sec.
-/*}
- function tenleftSeconds(){
- 	$("timeRem").html("10 Seconds Left!");
- 	$(".showTimer").html("10 " +"seconds");//
-	alert("10 seconds left");
- }*/
-
-	function totalSeconds() {
-		audio.play();
-	
-// 	alert("Time is Up");
-// 	console.log('done');
-	}
-
-	//time remaining
+	//Timer
 	function run(){  //run(); - this will happen on #Start.on (click, run check syntax)
             counter = setInterval(decrement, 1000);
             setTimeout(totalSeconds,1000*120);
-            /*setTimeout(totalSeconds,1000*120); // added 66-68. may have to delete
-            function totalSeconds(){
-            	audio.play();
-            }*/
-            
         }
 
         function decrement(){
@@ -77,22 +54,25 @@ $(document).ready(function(){
             $('.showTimer').html('<h2>' + number + '</h2>');
             $("#Start").show(300);// if using same button for :timer & done, ???
 			$("#Start").html('<h2>' + number + '</h2>');
-            if (number === 0){
-                stop();
+            if(number === 0){
+            	stop();
                 $("#timeRem").html("Time's Up!");
                 alert('Your time is up!');
-            } else if (number == 10) {
-
+				audio.play();
             }
+            /*else if(number === 10){
+               $("#timeRem").html("Hurry!");
+                alert('Ten Seconds L' eft!');
+				audio.play();
+            }*/
         }
 
         function stop(){
             clearInterval(counter);
             reset();
         }
-
-        //Populating question form
-    //function
+// End of timer section
+        // Next section: Populating question into text input
    	function renderQuestion() {
    		if(pos >= questions.length){  // resultPage()
    			$("#testStatus").html ("<h2> You got '+correct+' of '+questions.length+'  questions correct </h2>");
@@ -145,7 +125,7 @@ $(document).ready(function(){
    
 	}
 
-		/*function resultPage(){
+		function resultPage(){
 			$("#testStatus").html("<h2> Test Completed </h2>")
 			$("#Start").fadeOut("slow");// if using same button for :timer & done, ???
 			$("#Start").html('Ta Dah!');
@@ -154,9 +134,9 @@ $(document).ready(function(){
 			$("textInput").append("<h3> "correct Answers: "+ (correct)</h3><br>" );
 			$("textInput").append("<h3> "Incorrect Answers: "+ (incorrect)</h3><br>" );
 			$("textInput").append("<h3> "Unanswered: "+ (noAnswer)</h3><br>" );
-			audio.play();
+			audio.play(); // diff audio source TaDa
 			setTimeout(reset, 5000);
-		}*/
+		}
 	}); //end of document.ready
 
 	/*Question section
